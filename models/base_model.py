@@ -33,7 +33,7 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
-        return "[{}] ({}) {}".format((self.__class__.__name__),
+        return "[{}] ({}) {}".format((type(self).__name__),
                                      self.id, self.__dict__)
 
     def save(self):
@@ -49,7 +49,7 @@ class BaseModel:
         __dict__ of the instance
         '''
         adict = dict(self.__dict__)
-        adict["__class__"] = self.__class__.__name__
+        adict["__class__"] = type(self).__name__
         adict['created_at'] = self.created_at.isoformat()
         adict['updated_at'] = self.updated_at.isoformat()
         return adict
